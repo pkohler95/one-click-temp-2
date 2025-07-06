@@ -3,6 +3,15 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { Input } from "@/components/ui/input"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 import {
   Moon,
   Sun,
@@ -14,12 +23,18 @@ import {
   CreditCard,
   PieChart,
   ChevronDown,
+  Check,
 } from "lucide-react"
 import Link from "next/link"
 
 export default function OneClickLanding() {
   const [darkMode, setDarkMode] = useState(false)
   const [userType, setUserType] = useState<"personal" | "business">("business")
+  const [email, setEmail] = useState("")
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isDialogOpen, setIsDialogOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState("")
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode)
@@ -27,6 +42,47 @@ export default function OneClickLanding() {
 
   const toggleUserType = (type: "personal" | "business") => {
     setUserType(type)
+  }
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+
+  const handleWaitlistSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setError("")
+    
+    if (!email.trim()) {
+      setError("Please enter your email address")
+      return
+    }
+    
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address")
+      return
+    }
+    
+    setIsLoading(true)
+    
+    try {
+      const response = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, userType })
+      })
+      const data = await response.json()
+      if (!response.ok) {
+        setError(data.error || "Something went wrong. Please try again.")
+        return
+      }
+      setIsSubmitted(true)
+    } catch (err) {
+      setError("Something went wrong. Please try again.")
+      console.error("Waitlist submission error:", err)
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -140,17 +196,82 @@ export default function OneClickLanding() {
               <Button variant="ghost" size="icon" onClick={toggleDarkMode} className="rounded-full">
                 {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
               </Button>
-              <Button
-                variant="ghost"
-                className={`hidden md:inline-flex font-light tracking-wide border ${darkMode ? "text-white hover:bg-gray-800 border-gray-600" : "border-gray-300"}`}
-              >
-                Log In
-              </Button>
-              <Button
-                className={`${darkMode ? "bg-white text-black hover:bg-gray-200" : "bg-black text-white hover:bg-gray-800"} font-light tracking-wide`}
-              >
-                Sign Up
-              </Button>
+              <Dialog open={isDialogOpen} onOpenChange={(open) => {
+                setIsDialogOpen(open)
+                if (!open) {
+                  setEmail("")
+                  setIsSubmitted(false)
+                  setError("")
+                  setIsLoading(false)
+                }
+              }}>
+                <DialogTrigger asChild>
+                  <Button
+                    className={`${darkMode ? "bg-white text-black hover:bg-gray-200" : "bg-black text-white hover:bg-gray-800"} font-light tracking-wide`}
+                  >
+                    Join Waitlist
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className={`${darkMode ? "bg-gray-900 border-gray-700" : "bg-white border-gray-200"} sm:max-w-md`}>
+                  <DialogHeader>
+                    <DialogTitle className={`${darkMode ? "text-white" : "text-gray-900"} text-center`}>
+                      Join the Waitlist
+                    </DialogTitle>
+                    <DialogDescription className={`${darkMode ? "text-gray-300" : "text-gray-600"} text-center`}>
+                      Be the first to know when OneClick launches. We'll notify you as soon as we're ready.
+                    </DialogDescription>
+                  </DialogHeader>
+                  {!isSubmitted ? (
+                    <form onSubmit={handleWaitlistSubmit} className="space-y-4">
+                      <div className="space-y-2">
+                        <Input
+                          type="email"
+                          placeholder="Enter your email address"
+                          value={email}
+                          onChange={(e) => {
+                            setEmail(e.target.value)
+                            if (error) setError("")
+                          }}
+                          className={`${darkMode ? "bg-gray-800 border-gray-600 text-white placeholder-gray-400" : "bg-white border-gray-200"} ${error ? "border-red-500" : ""}`}
+                          disabled={isLoading}
+                        />
+                        {error && (
+                          <p className="text-red-500 text-sm">{error}</p>
+                        )}
+                      </div>
+                      <Button 
+                        type="submit" 
+                        className="w-full bg-black text-white hover:bg-gray-800 font-light tracking-wide"
+                        disabled={isLoading}
+                      >
+                        {isLoading ? (
+                          <>
+                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                            Joining...
+                          </>
+                        ) : (
+                          <>
+                            Join Waitlist
+                            <ArrowRight className="w-4 h-4 ml-2" />
+                          </>
+                        )}
+                      </Button>
+                    </form>
+                  ) : (
+                    <div className="text-center space-y-4">
+                      <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                        <Check className="w-6 h-6 text-green-600" />
+                      </div>
+                      <p className={`${darkMode ? "text-white" : "text-gray-900"} font-medium`}>
+                        You're on the list!
+                      </p>
+                      <p className={`${darkMode ? "text-gray-300" : "text-gray-600"} text-sm`}>
+                        We'll notify you as soon as OneClick is ready.
+                      </p>
+                    </div>
+                  )}
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>
@@ -1032,21 +1153,18 @@ export default function OneClickLanding() {
                   Join thousands of companies already using OneClick to power their financial infrastructure and drive
                   growth.
                 </p>
-                <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                  <Button
-                    size="lg"
-                    className="bg-black text-white hover:bg-gray-800 font-light tracking-wider px-10 py-4 text-base"
-                  >
-                    Request Demo
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className={`font-light tracking-wider px-10 py-4 text-base ${darkMode ? "text-black border-gray-600" : ""}`}
-                  >
-                    View Pricing
-                  </Button>
+                <div className="flex justify-center">
+                  <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+                    <DialogTrigger asChild>
+                      <Button
+                        size="lg"
+                        className="bg-black text-white hover:bg-gray-800 font-light tracking-wider px-10 py-4 text-base"
+                      >
+                        Join Waitlist
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </DialogTrigger>
+                  </Dialog>
                 </div>
               </div>
             </section>
