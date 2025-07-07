@@ -24,6 +24,9 @@ import {
   PieChart,
   ChevronDown,
   Check,
+  DollarSign,
+  CheckCircle,
+  Settings,
 } from "lucide-react"
 import Link from "next/link"
 
@@ -916,220 +919,393 @@ export default function OneClickLanding() {
               </div>
 
               <div className="space-y-32">
-                {/* First Feature - Card on Left, Text on Right */}
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
-                  <div className="rounded-2xl bg-gradient-to-br from-sky-200 to-blue-300 p-10 h-96 relative overflow-hidden">
-                    <Shield className="w-14 h-14 text-gray-800 mb-6" />
-                    <h3 className="text-3xl font-light mb-3 text-gray-800 tracking-tight">Enterprise Security</h3>
-                    <p className="text-gray-700 mb-6 font-light leading-relaxed tracking-wide">
-                      Bank-grade security with SOC 2 compliance, end-to-end encryption, and advanced fraud detection.
-                    </p>
+                {userType === "business" ? (
+                  <>
+                    {/* Business Features */}
+                    {/* First Feature - Save Up to 3% on Processing Fees */}
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                      <div className="rounded-2xl bg-gradient-to-br from-green-200 to-emerald-300 p-10 h-96 relative overflow-hidden">
+                        <DollarSign className="w-14 h-14 text-gray-800 mb-6" />
+                        <h3 className="text-3xl font-light mb-3 text-gray-800 tracking-tight">Save Up to 3%</h3>
+                        <p className="text-gray-700 mb-6 font-light leading-relaxed tracking-wide">
+                          Stop overpaying for credit card transactions. Our platform uses low-cost rails like ACH and stablecoins.
+                        </p>
 
-                    {/* Geometric Pattern */}
-                    <div className="absolute inset-0 z-0 opacity-10">
-                      {[...Array(3)].map((_, i) => (
-                        <div
-                          key={i}
-                          className="absolute w-full h-32 border border-gray-500 rounded-full"
-                          style={{
-                            top: "70%",
-                            left: "50%",
-                            transform: `translate(-50%, -50%) scale(${i * 0.3 + 0.7})`,
-                          }}
-                        ></div>
-                      ))}
-                    </div>
+                        {/* Geometric Pattern */}
+                        <div className="absolute inset-0 z-0 opacity-10">
+                          {[...Array(3)].map((_, i) => (
+                            <div
+                              key={i}
+                              className="absolute w-full h-32 border border-gray-500 rounded-full"
+                              style={{
+                                top: "70%",
+                                left: "50%",
+                                transform: `translate(-50%, -50%) scale(${i * 0.3 + 0.7})`,
+                              }}
+                            ></div>
+                          ))}
+                        </div>
 
-                    <div className="absolute bottom-10 left-10 z-10">
-                      <p className="text-gray-700 font-light tracking-wide">SOC 2 Compliant</p>
-                    </div>
-                  </div>
+                        <div className="absolute bottom-10 left-10 z-10">
+                          <p className="text-gray-700 font-light tracking-wide">Low-Cost Rails</p>
+                        </div>
+                      </div>
 
-                  <div className="space-y-8">
-                    <h3
-                      className={`text-4xl font-extralight ${darkMode ? "text-white" : "text-gray-900"} tracking-tight leading-tight`}
-                    >
-                      Uncompromising Security
-                    </h3>
-                    <p
-                      className={`text-xl ${darkMode ? "text-gray-200" : "text-gray-600"} leading-relaxed font-light tracking-wide`}
-                    >
-                      Built with enterprise-grade security from the ground up. Our platform meets the highest industry
-                      standards with SOC 2 Type II compliance, end-to-end encryption, and advanced fraud detection
-                      algorithms that protect your business and customers.
-                    </p>
-                    <ul className="space-y-4">
-                      <li className="flex items-center space-x-4">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
-                          SOC 2 Type II Certified
-                        </span>
-                      </li>
-                      <li className="flex items-center space-x-4">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
-                          256-bit AES Encryption
-                        </span>
-                      </li>
-                      <li className="flex items-center space-x-4">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
-                          Real-time Fraud Detection
-                        </span>
-                      </li>
-                      <li className="flex items-center space-x-4">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                        <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
-                          Multi-factor Authentication
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-
-                {/* Second Feature - Text on Left, Card on Right */}
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
-                  <div className="space-y-8 lg:order-1">
-                    <h3
-                      className={`text-4xl font-extralight ${darkMode ? "text-white" : "text-gray-900"} tracking-tight leading-tight`}
-                    >
-                      Lightning-Fast Performance
-                    </h3>
-                    <p
-                      className={`text-xl ${darkMode ? "text-gray-200" : "text-gray-600"} leading-relaxed font-light tracking-wide`}
-                    >
-                      Experience unparalleled speed with our high-performance infrastructure. Process millions of
-                      transactions per second with sub-millisecond latency, ensuring your customers never wait and your
-                      business never slows down.
-                    </p>
-                    <ul className="space-y-4">
-                      <li className="flex items-center space-x-4">
-                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                        <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
-                          Sub-millisecond Latency
-                        </span>
-                      </li>
-                      <li className="flex items-center space-x-4">
-                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                        <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
-                          99.99% Uptime SLA
-                        </span>
-                      </li>
-                      <li className="flex items-center space-x-4">
-                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                        <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
-                          Auto-scaling Infrastructure
-                        </span>
-                      </li>
-                      <li className="flex items-center space-x-4">
-                        <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                        <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
-                          Global CDN Network
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-
-                  <div className="rounded-2xl bg-gradient-to-br from-violet-200 to-purple-300 p-10 h-96 relative overflow-hidden lg:order-2">
-                    <Zap className="w-14 h-14 text-gray-800 mb-6" />
-                    <h3 className="text-3xl font-light mb-3 text-gray-800 tracking-tight">Lightning Fast</h3>
-                    <p className="text-gray-700 mb-6 font-light leading-relaxed tracking-wide">
-                      Process millions of transactions per second with sub-millisecond latency and 99.99% uptime.
-                    </p>
-
-                    {/* Geometric Pattern */}
-                    <div className="absolute inset-0 z-0 opacity-10">
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                        {[...Array(2)].map((_, i) => (
-                          <div
-                            key={i}
-                            className="absolute w-full h-full border border-gray-500"
-                            style={{
-                              width: "200px",
-                              height: "200px",
-                              transform: `rotate(${i * 45}deg)`,
-                            }}
-                          ></div>
-                        ))}
+                      <div className="space-y-8">
+                        <h3
+                          className={`text-4xl font-extralight ${darkMode ? "text-white" : "text-gray-900"} tracking-tight leading-tight`}
+                        >
+                          💸 Save Up to 3% on Processing Fees
+                        </h3>
+                        <p
+                          className={`text-xl ${darkMode ? "text-gray-200" : "text-gray-600"} leading-relaxed font-light tracking-wide`}
+                        >
+                          Stop overpaying for credit card transactions. Our platform uses low-cost rails like ACH and stablecoins, helping you keep more of every sale.
+                        </p>
+                        <ul className="space-y-4">
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              Accept payments via ACH, USDC, or Bitcoin Lightning
+                            </span>
+                          </li>
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              Bypass 2.9%+ card fees and keep your margins
+                            </span>
+                          </li>
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              Transparent pricing with no hidden costs
+                            </span>
+                          </li>
+                        </ul>
                       </div>
                     </div>
 
-                    <div className="absolute bottom-10 left-10 z-10">
-                      <p className="text-gray-700 font-light tracking-wide">99.99% Uptime</p>
+                    {/* Second Feature - Compliance-Ready from Day One */}
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                      <div className="space-y-8 lg:order-1">
+                        <h3
+                          className={`text-4xl font-extralight ${darkMode ? "text-white" : "text-gray-900"} tracking-tight leading-tight`}
+                        >
+                          ✅ Compliance-Ready from Day One
+                        </h3>
+                        <p
+                          className={`text-xl ${darkMode ? "text-gray-200" : "text-gray-600"} leading-relaxed font-light tracking-wide`}
+                        >
+                          No money transmitter license? No problem. We operate under the Agent of the Payee model, so you can accept payments without regulatory headaches.
+                        </p>
+                        <ul className="space-y-4">
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              MSB + KYC/AML compliance handled for you
+                            </span>
+                          </li>
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              Operates under legally vetted AOP framework
+                            </span>
+                          </li>
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              Avoids state-by-state money transmitter licensing
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+
+                      <div className="rounded-2xl bg-gradient-to-br from-blue-200 to-indigo-300 p-10 h-96 relative overflow-hidden lg:order-2">
+                        <CheckCircle className="w-14 h-14 text-gray-800 mb-6" />
+                        <h3 className="text-3xl font-light mb-3 text-gray-800 tracking-tight">Compliance Ready</h3>
+                        <p className="text-gray-700 mb-6 font-light leading-relaxed tracking-wide">
+                          No money transmitter license? No problem. We operate under the Agent of the Payee model.
+                        </p>
+
+                        {/* Geometric Pattern */}
+                        <div className="absolute inset-0 z-0 opacity-10">
+                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                            {[...Array(2)].map((_, i) => (
+                              <div
+                                key={i}
+                                className="absolute w-full h-full border border-gray-500"
+                                style={{
+                                  width: "200px",
+                                  height: "200px",
+                                  transform: `rotate(${i * 45}deg)`,
+                                }}
+                              ></div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="absolute bottom-10 left-10 z-10">
+                          <p className="text-gray-700 font-light tracking-wide">AOP Framework</p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
 
-                {/* Third Feature - Card on Left, Text on Right */}
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
-                  <div className="rounded-2xl bg-gradient-to-br from-emerald-200 to-teal-300 p-10 h-96 relative overflow-hidden">
-                    <TrendingUp className="w-14 h-14 text-gray-800 mb-6" />
-                    <h3 className="text-3xl font-light mb-3 text-gray-800 tracking-tight">Real-time Analytics</h3>
-                    <p className="text-gray-700 mb-6 font-light leading-relaxed tracking-wide">
-                      Advanced analytics and reporting with real-time insights into your financial operations and
-                      performance.
-                    </p>
+                    {/* Third Feature - Easy Integration & Onboarding */}
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                      <div className="rounded-2xl bg-gradient-to-br from-purple-200 to-pink-300 p-10 h-96 relative overflow-hidden">
+                        <Settings className="w-14 h-14 text-gray-800 mb-6" />
+                        <h3 className="text-3xl font-light mb-3 text-gray-800 tracking-tight">Easy Integration</h3>
+                        <p className="text-gray-700 mb-6 font-light leading-relaxed tracking-wide">
+                          Get started in minutes—not weeks. Whether you use WooCommerce, Shopify, or a custom site.
+                        </p>
 
-                    {/* Geometric Pattern */}
-                    <div className="absolute inset-0 z-0 opacity-10">
-                      {[...Array(4)].map((_, i) => (
-                        <div
-                          key={i}
-                          className="absolute top-1/2 left-1/2 w-full h-px bg-gray-500 origin-center"
-                          style={{
-                            width: "300px",
-                            transform: `translate(-50%, -50%) rotate(${i * 45}deg)`,
-                          }}
-                        ></div>
-                      ))}
+                        {/* Geometric Pattern */}
+                        <div className="absolute inset-0 z-0 opacity-10">
+                          {[...Array(4)].map((_, i) => (
+                            <div
+                              key={i}
+                              className="absolute top-1/2 left-1/2 w-full h-px bg-gray-500 origin-center"
+                              style={{
+                                width: "300px",
+                                transform: `translate(-50%, -50%) rotate(${i * 45}deg)`,
+                              }}
+                            ></div>
+                          ))}
+                        </div>
+
+                        <div className="absolute bottom-10 left-10 z-10">
+                          <p className="text-gray-700 font-light tracking-wide">One-Click Setup</p>
+                        </div>
+                      </div>
+
+                      <div className="space-y-8">
+                        <h3
+                          className={`text-4xl font-extralight ${darkMode ? "text-white" : "text-gray-900"} tracking-tight leading-tight`}
+                        >
+                          ⚙️ Easy Integration & Onboarding
+                        </h3>
+                        <p
+                          className={`text-xl ${darkMode ? "text-gray-200" : "text-gray-600"} leading-relaxed font-light tracking-wide`}
+                        >
+                          Get started in minutes—not weeks. Whether you use WooCommerce, Shopify, or a custom site, our tools make setup seamless.
+                        </p>
+                        <ul className="space-y-4">
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              Pre-built plugins for top platforms
+                            </span>
+                          </li>
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              One-click hosted checkout and payment links
+                            </span>
+                          </li>
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              Step-by-step onboarding and developer docs
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Personal Features */}
+                    {/* First Feature - Instant Savings on Every Purchase */}
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                      <div className="rounded-2xl bg-gradient-to-br from-green-200 to-emerald-300 p-10 h-96 relative overflow-hidden">
+                        <DollarSign className="w-14 h-14 text-gray-800 mb-6" />
+                        <h3 className="text-3xl font-light mb-3 text-gray-800 tracking-tight">Save Up to 2%</h3>
+                        <p className="text-gray-700 mb-6 font-light leading-relaxed tracking-wide">
+                          Instant cash back applied at checkout—no points, no gimmicks, just real money back.
+                        </p>
+
+                        {/* Geometric Pattern */}
+                        <div className="absolute inset-0 z-0 opacity-10">
+                          {[...Array(3)].map((_, i) => (
+                            <div
+                              key={i}
+                              className="absolute w-full h-32 border border-gray-500 rounded-full"
+                              style={{
+                                top: "70%",
+                                left: "50%",
+                                transform: `translate(-50%, -50%) scale(${i * 0.3 + 0.7})`,
+                              }}
+                            ></div>
+                          ))}
+                        </div>
+
+                        <div className="absolute bottom-10 left-10 z-10">
+                          <p className="text-gray-700 font-light tracking-wide">Instant Cash Back</p>
+                        </div>
+                      </div>
+
+                      <div className="space-y-8">
+                        <h3
+                          className={`text-4xl font-extralight ${darkMode ? "text-white" : "text-gray-900"} tracking-tight leading-tight`}
+                        >
+                          💵 Instant Savings on Every Purchase
+                        </h3>
+                        <p
+                          className={`text-xl ${darkMode ? "text-gray-200" : "text-gray-600"} leading-relaxed font-light tracking-wide`}
+                        >
+                          Save up to 2% instantly—no points, no gimmicks, just real money back.
+                        </p>
+                        <ul className="space-y-4">
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              Instant cash back applied at checkout
+                            </span>
+                          </li>
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              No need to track points or wait for rewards
+                            </span>
+                          </li>
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              Works automatically at participating merchants
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
 
-                    <div className="absolute bottom-10 left-10 z-10">
-                      <p className="text-gray-700 font-light tracking-wide">Real-time Insights</p>
-                    </div>
-                  </div>
+                    {/* Second Feature - Express Checkout */}
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                      <div className="space-y-8 lg:order-1">
+                        <h3
+                          className={`text-4xl font-extralight ${darkMode ? "text-white" : "text-gray-900"} tracking-tight leading-tight`}
+                        >
+                          ⚡ Express Checkout
+                        </h3>
+                        <p
+                          className={`text-xl ${darkMode ? "text-gray-200" : "text-gray-600"} leading-relaxed font-light tracking-wide`}
+                        >
+                          Skip the forms and pay in seconds—fast, secure, and seamless.
+                        </p>
+                        <ul className="space-y-4">
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              One-click payments with saved info
+                            </span>
+                          </li>
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              No need to enter card details or shipping every time
+                            </span>
+                          </li>
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              Works across all supported merchants
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
 
-                  <div className="space-y-8">
-                    <h3
-                      className={`text-4xl font-extralight ${darkMode ? "text-white" : "text-gray-900"} tracking-tight leading-tight`}
-                    >
-                      Intelligent Analytics
-                    </h3>
-                    <p
-                      className={`text-xl ${darkMode ? "text-gray-200" : "text-gray-600"} leading-relaxed font-light tracking-wide`}
-                    >
-                      Make data-driven decisions with our comprehensive analytics suite. Get real-time insights into
-                      transaction patterns, customer behavior, and business performance with customizable dashboards and
-                      automated reporting.
-                    </p>
-                    <ul className="space-y-4">
-                      <li className="flex items-center space-x-4">
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                        <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
-                          Real-time Data Processing
-                        </span>
-                      </li>
-                      <li className="flex items-center space-x-4">
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                        <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
-                          Custom Dashboard Builder
-                        </span>
-                      </li>
-                      <li className="flex items-center space-x-4">
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                        <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
-                          Automated Report Generation
-                        </span>
-                      </li>
-                      <li className="flex items-center space-x-4">
-                        <div className="w-2 h-2 bg-emerald-500 rounded-full"></div>
-                        <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
-                          Predictive Analytics
-                        </span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
+                      <div className="rounded-2xl bg-gradient-to-br from-blue-200 to-indigo-300 p-10 h-96 relative overflow-hidden lg:order-2">
+                        <Zap className="w-14 h-14 text-gray-800 mb-6" />
+                        <h3 className="text-3xl font-light mb-3 text-gray-800 tracking-tight">Express Checkout</h3>
+                        <p className="text-gray-700 mb-6 font-light leading-relaxed tracking-wide">
+                          Skip the forms and pay in seconds—fast, secure, and seamless.
+                        </p>
+
+                        {/* Geometric Pattern */}
+                        <div className="absolute inset-0 z-0 opacity-10">
+                          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                            {[...Array(2)].map((_, i) => (
+                              <div
+                                key={i}
+                                className="absolute w-full h-full border border-gray-500"
+                                style={{
+                                  width: "200px",
+                                  height: "200px",
+                                  transform: `rotate(${i * 45}deg)`,
+                                }}
+                              ></div>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="absolute bottom-10 left-10 z-10">
+                          <p className="text-gray-700 font-light tracking-wide">One-Click Pay</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Third Feature - Easy, 2-Minute Onboarding */}
+                    <div className="grid lg:grid-cols-2 gap-16 items-center">
+                      <div className="rounded-2xl bg-gradient-to-br from-purple-200 to-pink-300 p-10 h-96 relative overflow-hidden">
+                        <Settings className="w-14 h-14 text-gray-800 mb-6" />
+                        <h3 className="text-3xl font-light mb-3 text-gray-800 tracking-tight">2-Minute Setup</h3>
+                        <p className="text-gray-700 mb-6 font-light leading-relaxed tracking-wide">
+                          Get started fast—no crypto wallet or technical setup required.
+                        </p>
+
+                        {/* Geometric Pattern */}
+                        <div className="absolute inset-0 z-0 opacity-10">
+                          {[...Array(4)].map((_, i) => (
+                            <div
+                              key={i}
+                              className="absolute top-1/2 left-1/2 w-full h-px bg-gray-500 origin-center"
+                              style={{
+                                width: "300px",
+                                transform: `translate(-50%, -50%) rotate(${i * 45}deg)`,
+                              }}
+                            ></div>
+                          ))}
+                        </div>
+
+                        <div className="absolute bottom-10 left-10 z-10">
+                          <p className="text-gray-700 font-light tracking-wide">Quick Start</p>
+                        </div>
+                      </div>
+
+                      <div className="space-y-8">
+                        <h3
+                          className={`text-4xl font-extralight ${darkMode ? "text-white" : "text-gray-900"} tracking-tight leading-tight`}
+                        >
+                          🪄 Easy, 2-Minute Onboarding
+                        </h3>
+                        <p
+                          className={`text-xl ${darkMode ? "text-gray-200" : "text-gray-600"} leading-relaxed font-light tracking-wide`}
+                        >
+                          Get started fast—no crypto wallet or technical setup required.
+                        </p>
+                        <ul className="space-y-4">
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              Sign up with just your email
+                            </span>
+                          </li>
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              Securely connect your bank via Plaid
+                            </span>
+                          </li>
+                          <li className="flex items-center space-x-4">
+                            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                            <span className={`${darkMode ? "text-gray-200" : "text-gray-700"} font-light tracking-wide`}>
+                              Start saving and shopping right away
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             </section>
 
