@@ -12,7 +12,7 @@ interface CTAProps {
 
 export default function CTA({ darkMode, userType, isDialogOpen, setIsDialogOpen }: CTAProps) {
   return (
-    <section className="container mx-auto px-6 py-24">
+    <section className={`container mx-auto px-6 py-24 ${darkMode ? "bg-black" : ""}`}>
       <div className="text-center space-y-10">
         <Badge
           variant="secondary"

@@ -7,7 +7,7 @@ interface FeaturesProps {
 
 export default function Features({ darkMode, userType }: FeaturesProps) {
   return (
-    <section id="features" className="container mx-auto px-6 py-24">
+    <section id="features" className={`container mx-auto px-6 py-24 ${darkMode ? "bg-black" : ""}`}>
       <div className="text-center mb-20">
         <Badge
           variant="secondary"
