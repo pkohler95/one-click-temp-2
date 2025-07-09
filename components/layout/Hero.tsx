@@ -19,13 +19,8 @@ interface HeroProps {
 export default function Hero({ darkMode, userType, toggleUserType }: HeroProps) {
   return (
     <section className="relative overflow-hidden">
-      {/* Gradient Background */}
-      <div
-        className={`absolute inset-0 ${darkMode ? "bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900" : "bg-gradient-to-br from-purple-50 via-pink-50 to-blue-50"}`}
-      ></div>
-
-      <div className="container mx-auto px-6 py-24 relative">
-        <div className="space-y-12">
+      <div className="container mx-auto px-6 py-24 relative pb-0">
+        <div className="space-y-8">
           {/* Hero Text Content */}
           <div className="text-center space-y-10">
             <div className="space-y-8">
@@ -88,11 +83,11 @@ export default function Hero({ darkMode, userType, toggleUserType }: HeroProps) 
           {/* Dashboard Image */}
           <div className="relative w-full">
             {/* Full-width dark blue/purple background */}
-            <div className="relative py-16">
+            <div className="relative py-8">
               <div className="container mx-auto px-6">
                 <div className="relative max-w-6xl mx-auto">
                   {/* Desktop Dashboard - Hidden on mobile */}
-                  <div className={`relative ${darkMode ? "bg-gray-900/95 backdrop-blur-sm border-gray-700/50" : "bg-white border-gray-200"} rounded-2xl shadow-2xl border overflow-hidden hidden lg:block`}>
+                  <div className={`relative ${darkMode ? "bg-gray-900/95 backdrop-blur-sm border-gray-700/50" : "bg-white border-gray-200"} rounded-2xl border overflow-hidden hidden lg:block`}>
                     {/* Dashboard Header */}
                     <div
                       className={`flex items-center justify-between p-4 border-b ${darkMode ? "border-gray-700 bg-gray-800" : "border-gray-100 bg-gray-50"}`}
@@ -630,7 +625,7 @@ export default function Hero({ darkMode, userType, toggleUserType }: HeroProps) 
                   </div>
 
                   {/* Mobile Dashboard - Visible on mobile */}
-                  <div className={`relative ${darkMode ? "bg-gray-900/95 backdrop-blur-sm border-gray-700/50" : "bg-white border-gray-200"} rounded-2xl shadow-2xl border overflow-hidden lg:hidden`}>
+                  <div className={`relative ${darkMode ? "bg-gray-900/95 backdrop-blur-sm border-gray-700/50" : "bg-white border-gray-200"} rounded-2xl border overflow-hidden lg:hidden`}>
                     {/* Mobile Dashboard Header */}
                     <div
                       className={`flex items-center justify-between p-3 border-b ${darkMode ? "border-gray-700 bg-gray-800" : "border-gray-100 bg-gray-50"}`}
