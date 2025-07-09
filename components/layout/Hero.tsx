@@ -40,8 +40,8 @@ export default function Hero({ darkMode, userType, toggleUserType }: HeroProps) 
                 className={`text-xl leading-relaxed max-w-3xl mx-auto ${darkMode ? "text-gray-200" : "text-gray-600"} font-light tracking-wide`}
               >
                 {userType === "business" 
-                  ? "OneClick simplifies stablecoin payments for businesses—offering low fees, easy integration, and built-in compliance."
-                  : "OneClick lets you save up to 2% instantly on every purchase—built for modern spending."
+                  ? "OneClick simplifies stablecoin payments for businesses—offering low fees, easy integration, and built-in compliance"
+                  : "OneClick lets you save up to 2% instantly on every purchase—built for modern spending"
                 }
               </p>
             </div>
