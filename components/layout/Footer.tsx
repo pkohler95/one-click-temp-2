@@ -172,7 +172,7 @@ export default function Footer({
         <div className="border-t mt-12 pt-8">
           <div className="flex justify-center">
             <p className={`text-sm font-light tracking-wide ${darkMode ? "text-gray-300" : "text-gray-500"}`}>
-              © 2024 OneClick. All rights reserved.
+              © 2025 OneClick. All rights reserved.
             </p>
           </div>
         </div>
