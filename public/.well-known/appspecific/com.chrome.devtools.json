@@ -1,0 +1,8 @@
+{
+  "version": "1.0",
+  "description": "OneClick Landing Page DevTools Configuration",
+  "features": {
+    "customElements": true,
+    "stateManagement": true
+  }
+} 
