@@ -67,7 +67,13 @@ export default function CTA({
             }
           </p>
           <div className="flex justify-center">
-            <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+            <Dialog open={isDialogOpen} onOpenChange={(open) => {
+              setIsDialogOpen(open)
+              if (!open) {
+                setEmail("")
+                setError("")
+              }
+            }}>
               <DialogTrigger asChild>
                 <Button
                   size="lg"
